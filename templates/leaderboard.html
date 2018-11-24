@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Leaderboard
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">User</th>
+                <th scope="col">Portfolio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set count = namespace(a=1) %}
+            {% for user in leaders %}
+                <tr>
+                    <td>
+                        {{ count.a }}
+                    </td></td>
+                    <td>
+                        {{ user[1] }}
+                    </td>
+                    <td>
+                        {{ user[0]|usd }}
+                    </td>
+                </tr>
+                {% set count.a = count.a + 1 %}
+                <!--https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template-->
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

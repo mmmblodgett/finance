@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Transaction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in record %}
+                <tr>
+                    <td>
+                        {{ entry['time'] }}
+                    </td>
+                    <td>
+                        You {{ 'bought' if entry['tran_type'] == 'BUY' else 'sold' }} {{ entry['quant'] }} share(s) of {{ (entry['symbol']|lookup)['name'] }} ({{ entry['symbol'] }}) for {{ entry['price']|usd }} each.
+                        <!--https://stackoverflow.com/questions/14214942/python-jinja2-shorthand-conditional-->
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
