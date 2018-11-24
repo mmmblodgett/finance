@@ -54,7 +54,7 @@ def index():
     total = cash
     for symbol in port:
         total += lookup(symbol)['price'] * port[symbol]
-    return render_template("index.html", cash=cash, portfolio=port, total=total)
+    return render_template("template/index.html", cash=cash, portfolio=port, total=total)
 
 
 @app.route("/buy", methods=["GET", "POST"])
